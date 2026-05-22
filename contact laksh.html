@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Laksh Raj | Creative Developer & Digital Artist</title>
+  <meta name="description" content="Get in touch with Laksh Raj to collaborate on your next creative fantasy project." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* Contact-specific large lantern card */
+    .contact-lantern-scene {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-lantern-card {
+      width: 100%;
+      max-width: 420px;
+      height: 480px;
+      background: rgba(36, 22, 58, 0.35);
+      border: 1px solid rgba(217, 200, 255, 0.12);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .contact-lantern-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--lantern-gold), var(--sakura-pink), transparent);
+    }
+
+    .contact-lantern-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--mist-lavender), var(--lantern-gold), transparent);
+    }
+
+    .big-lantern {
+      position: relative;
+      margin-bottom: 2rem;
+      animation: bigLanternFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes bigLanternFloat {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    .big-lantern-body {
+      width: 80px;
+      height: 110px;
+      background: radial-gradient(circle at 50% 30%, #FFD27A, #FFB36B);
+      border-radius: 40% 40% 50% 50%;
+      position: relative;
+      box-shadow: 0 0 40px #FFD27A, 0 0 80px rgba(255,210,122,0.6), 0 0 120px rgba(255,179,107,0.3);
+      animation: bigLanternGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes bigLanternGlow {
+      0% { box-shadow: 0 0 40px #FFD27A, 0 0 80px rgba(255,210,122,0.6), 0 0 120px rgba(255,179,107,0.3); }
+      100% { box-shadow: 0 0 60px #FFD27A, 0 0 120px rgba(255,210,122,0.8), 0 0 180px rgba(255,179,107,0.5); }
+    }
+
+    .big-lantern-body::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 22px;
+      background: rgba(255,210,122,0.8);
+    }
+
+    .big-lantern-body::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 12px;
+      background: rgba(255,210,122,0.6);
+      border-radius: 0 0 50% 50%;
+    }
+
+    .big-lantern-cross-h {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: rgba(255,179,107,0.4);
+      transform: translateY(-50%);
+    }
+
+    .big-lantern-cross-v {
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      bottom: 15%;
+      width: 2px;
+      background: rgba(255,179,107,0.4);
+      transform: translateX(-50%);
+    }
+
+    .big-lantern-string {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255,210,122,0.3), rgba(255,210,122,0.8));
+    }
+
+    .contact-lantern-text {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--lantern-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .contact-lantern-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: rgba(217, 200, 255, 0.6);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Floating particles in lantern card */
+    .lantern-particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: particleFloat ease-in-out infinite;
+    }
+
+    /* Availability badge */
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem;
+      background: rgba(100, 220, 130, 0.08);
+      border: 1px solid rgba(100, 220, 130, 0.2);
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: rgba(150, 250, 170, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .availability-dot {
+      width: 8px;
+      height: 8px;
+      background: #64DC82;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #64DC82;
+      animation: availPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes availPulse {
+      0%, 100% { box-shadow: 0 0 6px #64DC82; }
+      50% { box-shadow: 0 0 18px #64DC82, 0 0 30px rgba(100,220,130,0.3); }
+    }
+
+    /* Social contact row */
+    .social-contact-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .social-contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(36,22,58,0.5);
+      border: 1px solid rgba(217,200,255,0.1);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: rgba(217,200,255,0.7);
+      text-decoration: none;
+      cursor: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .social-contact-btn:hover {
+      background: rgba(255,210,122,0.1);
+      border-color: rgba(255,210,122,0.3);
+      color: var(--lantern-gold);
+    }
+
+    @media(max-width:768px){
+      .contact-lantern-scene { height: 350px; }
+      .contact-lantern-card { height: 340px; }
+      .big-lantern-body { width: 60px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen">
+  <div class="loading-logo">Laksh Raj</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  <div class="loading-text">Entering the fantasy world...</div>
+</div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- Page Transition -->
+<div class="page-transition">
+  <div class="page-transition-overlay" id="page-transition-overlay"></div>
+</div>
+
+<!-- Ambient Orbs -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="petals-container" id="petals-container"></div>
+<div class="fog-container">
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">Laksh Raj</a>
+  <div class="nav-toggle" id="nav-toggle">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="index.html#enter" class="nav-cta"><span>✦ Enter My World</span></a>
+</nav>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="contact-section">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(243,180,216,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 30%,rgba(255,210,122,0.06) 0%,transparent 40%);"></div>
+
+  <div class="contact-grid">
+    <!-- LEFT -->
+    <div class="contact-info">
+      <div class="availability-badge">
+        <div class="availability-dot"></div>
+        Available for New Projects
+      </div>
+
+      <div class="section-label">Let's Create Together</div>
+      <h1 class="contact-title">
+        Let's Create<br/>
+        <span class="highlight">Something</span><br/>
+        Magical Together.
+      </h1>
+
+      <p class="contact-desc">
+        Whether you have a dream project in mind, need a collaborator for your animated film, or want to commission a piece of digital magic — I'm here. Let's build something that feels like a living fantasy.
+      </p>
+
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="contact-detail-icon">✉</span>
+          <div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(217,200,255,0.4);margin-bottom:0.2rem;">Email</div>
+            <div class="contact-detail-text">hello@Laksh Raj.studio</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">📍</span>
+          <div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(217,200,255,0.4);margin-bottom:0.2rem;">Location</div>
+            <div class="contact-detail-text">India — Available Worldwide</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">🕐</span>
+          <div>
+            <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(217,200,255,0.4);margin-bottom:0.2rem;">Response Time</div>
+            <div class="contact-detail-text">Within 24 Hours</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-contact-row">
+        <a href="#" class="social-contact-btn">🎨 Behance</a>
+        <a href="#" class="social-contact-btn">📷 Instagram</a>
+        <a href="#" class="social-contact-btn">🖌 ArtStation</a>
+        <a href="#" class="social-contact-btn">▶ YouTube</a>
+        <a href="#" class="social-contact-btn">💼 LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- RIGHT - Form + Lantern Scene -->
+    <div>
+      <!-- Glowing Lantern Card -->
+      <div class="contact-lantern-scene" data-reveal="right" style="margin-bottom:2rem;">
+        <div class="contact-lantern-card">
+          <!-- Floating particles inside card -->
+          <div class="lantern-particle" style="width:4px;height:4px;background:rgba(255,210,122,0.6);top:20%;left:15%;animation-duration:3s;"></div>
+          <div class="lantern-particle" style="width:3px;height:3px;background:rgba(243,180,216,0.7);top:70%;left:80%;animation-duration:4s;animation-delay:-1s;"></div>
+          <div class="lantern-particle" style="width:5px;height:5px;background:rgba(217,200,255,0.5);top:40%;left:10%;animation-duration:5s;animation-delay:-2s;"></div>
+          <div class="lantern-particle" style="width:3px;height:3px;background:rgba(255,210,122,0.5);top:30%;right:12%;animation-duration:3.5s;animation-delay:-0.5s;"></div>
+          <div class="lantern-particle" style="width:4px;height:4px;background:rgba(243,180,216,0.6);bottom:25%;left:25%;animation-duration:4.5s;animation-delay:-1.5s;"></div>
+          <div class="lantern-particle" style="width:6px;height:6px;background:rgba(255,179,107,0.4);bottom:15%;right:20%;animation-duration:6s;animation-delay:-3s;"></div>
+
+          <!-- Ambient radial glow -->
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(255,210,122,0.08),transparent 70%);border-radius:50%;animation:glowPulse 4s ease-in-out infinite;pointer-events:none;"></div>
+
+          <!-- Big Lantern -->
+          <div class="big-lantern">
+            <div class="big-lantern-string"></div>
+            <div class="big-lantern-body">
+              <div class="big-lantern-cross-h"></div>
+              <div class="big-lantern-cross-v"></div>
+            </div>
+          </div>
+
+          <div class="contact-lantern-text">✦ Laksh Raj STUDIO ✦</div>
+          <div class="contact-lantern-sub">Where imagination becomes art</div>
+
+          <!-- Small floating lanterns in card -->
+          <div style="position:absolute;top:15%;left:20%;animation:lanternFloat 5s ease-in-out infinite;">
+            <div style="width:20px;height:28px;background:radial-gradient(circle at 50% 30%,#FFD27A,#FFB36B);border-radius:40% 40% 50% 50%;box-shadow:0 0 15px #FFD27A,0 0 30px rgba(255,210,122,0.4);"></div>
+          </div>
+          <div style="position:absolute;top:10%;right:18%;animation:lanternFloat 6.5s ease-in-out infinite;animation-delay:-2s;">
+            <div style="width:16px;height:22px;background:radial-gradient(circle at 50% 30%,#FFD27A,#FFB36B);border-radius:40% 40% 50% 50%;box-shadow:0 0 12px #FFD27A,0 0 25px rgba(255,210,122,0.35);"></div>
+          </div>
+          <div style="position:absolute;bottom:20%;right:25%;animation:lanternFloat 4.5s ease-in-out infinite;animation-delay:-1s;">
+            <div style="width:14px;height:18px;background:radial-gradient(circle at 50% 30%,#F3B4D8,#FFB36B);border-radius:40% 40% 50% 50%;box-shadow:0 0 10px rgba(243,180,216,0.8);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper" data-reveal>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Your Name</label>
+              <input type="text" id="name" class="form-input" placeholder="Your full name" required autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" id="email" class="form-input" placeholder="your@email.com" required autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="project-type">Project Type</label>
+              <select id="project-type" class="form-select">
+                <option value="" disabled selected>Select a type...</option>
+                <option value="animation">🎬 Animation Film</option>
+                <option value="motion">⚡ Motion Graphics</option>
+                <option value="illustration">🖌 Digital Illustration</option>
+                <option value="vfx">🌟 VFX Compositing</option>
+                <option value="video">🎥 Video Editing</option>
+                <option value="story">📖 Storyboarding</option>
+                <option value="branding">✨ Creative Branding</option>
+                <option value="other">🔮 Something Magical...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="budget">Project Budget</label>
+              <select id="budget" class="form-select">
+                <option value="" disabled selected>Budget range...</option>
+                <option value="small">Under $500</option>
+                <option value="medium">$500 — $2,000</option>
+                <option value="large">$2,000 — $5,000</option>
+                <option value="xlarge">$5,000 — $10,000</option>
+                <option value="xxlarge">$10,000+</option>
+                <option value="discuss">Let's Discuss</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Tell Me About Your Dream Project</label>
+            <textarea id="message" class="form-textarea" placeholder="Describe your vision, the feeling you want to create, your timeline, and any reference materials or inspirations you have in mind..." rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <span>✦ Send Your Message ✦</span>
+          </button>
+
+          <div class="success-msg" id="success-msg">
+            ✨ Your message has been sent into the universe! I'll respond within 24 hours. ✨
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ / PROCESS SECTION ===== -->
+<section style="padding:6rem 3rem;position:relative;z-index:2;" data-reveal>
+  <div style="max-width:800px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="section-label" style="justify-content:center;">Before You Reach Out</div>
+      <h2 class="section-title" style="text-align:center;">How We'll <span class="highlight">Work Together</span></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div style="padding:1.5rem 2rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:16px;backdrop-filter:blur(10px);">
+        <div style="font-size:2rem;margin-bottom:0.8rem;filter:drop-shadow(0 0 8px rgba(255,210,122,0.4));">💌</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--lantern-gold);margin-bottom:0.5rem;letter-spacing:0.05em;">1. Discovery Call</div>
+        <div style="font-size:0.82rem;color:rgba(217,200,255,0.6);line-height:1.7;">We discuss your vision, goals, and the emotional universe you want to create.</div>
+      </div>
+      <div style="padding:1.5rem 2rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:16px;backdrop-filter:blur(10px);">
+        <div style="font-size:2rem;margin-bottom:0.8rem;filter:drop-shadow(0 0 8px rgba(243,180,216,0.4));">🎨</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--sakura-pink);margin-bottom:0.5rem;letter-spacing:0.05em;">2. Concept & Vision</div>
+        <div style="font-size:0.82rem;color:rgba(217,200,255,0.6);line-height:1.7;">I develop mood boards, concept art, and a creative treatment for your project.</div>
+      </div>
+      <div style="padding:1.5rem 2rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:16px;backdrop-filter:blur(10px);">
+        <div style="font-size:2rem;margin-bottom:0.8rem;filter:drop-shadow(0 0 8px rgba(217,200,255,0.4));">⚡</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--mist-lavender);margin-bottom:0.5rem;letter-spacing:0.05em;">3. Production Magic</div>
+        <div style="font-size:0.82rem;color:rgba(217,200,255,0.6);line-height:1.7;">I bring your world to life with regular updates and revision checkpoints.</div>
+      </div>
+      <div style="padding:1.5rem 2rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:16px;backdrop-filter:blur(10px);">
+        <div style="font-size:2rem;margin-bottom:0.8rem;filter:drop-shadow(0 0 8px rgba(255,179,107,0.4));">✨</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--sunset-orange);margin-bottom:0.5rem;letter-spacing:0.05em;">4. Delivery & Beyond</div>
+        <div style="font-size:0.82rem;color:rgba(217,200,255,0.6);line-height:1.7;">Final delivery with full source files, and ongoing support for your creative universe.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Laksh Raj</div>
+        <div class="footer-tagline">Crafting worlds through motion & imagination.</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Behance">🎨</a>
+        <a href="#" class="social-icon" title="Instagram">📷</a>
+        <a href="#" class="social-icon" title="YouTube">▶</a>
+        <a href="#" class="social-icon" title="ArtStation">🖌</a>
+        <a href="#" class="social-icon" title="LinkedIn">💼</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laksh Raj. All rights reserved.</span>
+      <span class="footer-heart">Made with <span>✦</span> magic & code</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

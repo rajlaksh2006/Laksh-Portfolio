@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Laksh Raj | Creative Developer & Digital Artist</title>
+  <meta name="description" content="The story of Laksh Raj — A creative developer, animator, and digital artist crafting cinematic fantasy worlds." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen">
+  <div class="loading-logo">Laksh Raj</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  <div class="loading-text">Entering the fantasy world...</div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- Page Transition -->
+<div class="page-transition">
+  <div class="page-transition-overlay" id="page-transition-overlay"></div>
+</div>
+
+<!-- Ambient Orbs -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+
+<!-- Particle Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Petals -->
+<div class="petals-container" id="petals-container"></div>
+
+<!-- Fog -->
+<div class="fog-container">
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">Laksh Raj</a>
+  <div class="nav-toggle" id="nav-toggle">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="index.html#enter" class="nav-cta"><span>✦ Enter My World</span></a>
+</nav>
+
+<!-- ===== ABOUT HERO ===== -->
+<section class="about-hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="about-grid">
+    <!-- Left Side -->
+    <div class="hero-left">
+      <div class="hero-tag">✦ The Dreamer Behind The Art</div>
+      <div class="section-label" style="margin-bottom:1rem;">About Laksh Raj</div>
+      <h1 class="hero-title" style="font-size:clamp(2.5rem,5vw,4rem);">
+        <span class="line-1">A Creative</span>
+        <span class="line-2">Soul Painting</span>
+        <span class="line-3">Digital Worlds</span>
+      </h1>
+      <p class="hero-desc" style="max-width:520px;">
+        I am Laksh Raj — a creative developer, animator, and digital artist who believes that every pixel holds a story, every frame carries emotion, and every project is a portal to another world. Born from a love of anime, fantasy, and the magic of cinema, I craft experiences that feel alive.
+      </p>
+      <p class="about-bio" style="font-size:1.05rem;margin-bottom:2rem;max-width:500px;">
+        With over 5 years of immersive creative practice, I've developed a distinctive visual language — one that blends the dreamlike quality of Studio Ghibli, the epic grandeur of fantasy games, and the raw emotion of indie cinema into something entirely my own.
+      </p>
+      <div class="hero-btns">
+        <a href="portfolio.html" class="btn-primary"><span>✦ Explore My Work</span></a>
+        <a href="contact.html" class="btn-secondary"><span>✦ Let's Collaborate</span></a>
+      </div>
+    </div>
+
+    <!-- Right Side - Artwork Frame -->
+    <div class="about-artwork" data-reveal="right">
+      <div class="about-artwork-inner">
+        <div class="about-artwork-glow"></div>
+
+        <!-- Animated Portrait Illustration -->
+        <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:relative;z-index:1;">
+          <defs>
+            <radialGradient id="portraitBg" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#3B1C5A"/>
+              <stop offset="100%" stop-color="#1B1028"/>
+            </radialGradient>
+            <radialGradient id="charGlow" cx="50%" cy="30%" r="50%">
+              <stop offset="0%" stop-color="#FFD27A" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#FFD27A" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="faceGrad" cx="50%" cy="40%" r="50%">
+              <stop offset="0%" stop-color="#F5C9A0"/>
+              <stop offset="100%" stop-color="#D4956A"/>
+            </radialGradient>
+            <filter id="portraitGlow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="robeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2D1B4E"/>
+              <stop offset="50%" stop-color="#1B1028"/>
+              <stop offset="100%" stop-color="#3B1C5A"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Background -->
+          <rect width="400" height="480" fill="url(#portraitBg)"/>
+
+          <!-- Background glow orbs -->
+          <ellipse cx="200" cy="150" rx="150" ry="120" fill="url(#charGlow)" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+          </ellipse>
+
+          <!-- Stars in background -->
+          <g opacity="0.6">
+            <circle cx="50" cy="60" r="1" fill="#FFD27A"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="350" cy="80" r="1.2" fill="#F3B4D8"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite"/></circle>
+            <circle cx="100" cy="120" r="1" fill="#D9C8FF"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/></circle>
+            <circle cx="320" cy="50" r="0.8" fill="#F8F4FF"><animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="380" cy="150" r="1" fill="#FFD27A"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.2s" repeatCount="indefinite"/></circle>
+            <circle cx="30" cy="200" r="1.2" fill="#F3B4D8"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite"/></circle>
+          </g>
+
+          <!-- Moon behind character -->
+          <circle cx="200" cy="100" r="60" fill="#F8F4FF" opacity="0.08"/>
+          <circle cx="200" cy="100" r="45" fill="#F8F4FF" opacity="0.06"/>
+
+          <!-- Character body / robes -->
+          <ellipse cx="200" cy="380" rx="110" ry="80" fill="url(#robeGrad)" opacity="0.9"/>
+          <path d="M120,320 Q160,360 200,380 Q240,360 280,320 Q260,300 200,295 Q140,300 120,320Z" fill="#2D1B4E" opacity="0.95"/>
+
+          <!-- Robe details -->
+          <path d="M165,330 Q175,350 185,370" fill="none" stroke="rgba(255,210,122,0.2)" stroke-width="1.5"/>
+          <path d="M235,330 Q225,350 215,370" fill="none" stroke="rgba(255,210,122,0.2)" stroke-width="1.5"/>
+          <!-- Gold trim -->
+          <path d="M140,335 Q200,345 260,335" fill="none" stroke="#FFD27A" stroke-width="1.5" opacity="0.4"/>
+          <path d="M125,345 Q200,358 275,345" fill="none" stroke="#FFD27A" stroke-width="1" opacity="0.25"/>
+
+          <!-- Arms -->
+          <ellipse cx="130" cy="340" rx="30" ry="15" fill="#2D1B4E" transform="rotate(-20 130 340)" opacity="0.9"/>
+          <ellipse cx="270" cy="340" rx="30" ry="15" fill="#2D1B4E" transform="rotate(20 270 340)" opacity="0.9"/>
+
+          <!-- Hands holding magical orb -->
+          <ellipse cx="160" cy="355" rx="18" ry="12" fill="#D4956A" opacity="0.8"/>
+          <ellipse cx="240" cy="355" rx="18" ry="12" fill="#D4956A" opacity="0.8"/>
+
+          <!-- Magical floating orb -->
+          <g>
+            <animate attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite"/>
+            <circle cx="200" cy="320" r="22" fill="rgba(217,200,255,0.15)" filter="url(#portraitGlow)"/>
+            <circle cx="200" cy="320" r="16" fill="rgba(255,210,122,0.3)"/>
+            <circle cx="200" cy="320" r="10" fill="rgba(255,210,122,0.6)"/>
+            <circle cx="200" cy="320" r="5" fill="#FFD27A" opacity="0.9"/>
+            <!-- Orb glow rings -->
+            <circle cx="200" cy="320" r="30" fill="none" stroke="rgba(217,200,255,0.1)" stroke-width="1">
+              <animate attributeName="r" values="30;40;30" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Neck -->
+          <rect x="188" y="230" width="24" height="35" rx="8" fill="#D4956A" opacity="0.85"/>
+
+          <!-- Head/Face -->
+          <ellipse cx="200" cy="200" rx="60" ry="70" fill="url(#faceGrad)" opacity="0.92"/>
+
+          <!-- Hair (dark, anime style) -->
+          <path d="M145,180 Q150,130 200,125 Q250,130 255,180 Q260,150 240,120 Q220,100 200,98 Q180,100 160,120 Q140,150 145,180Z" fill="#1A0A2E" opacity="0.95"/>
+          <!-- Hair strands -->
+          <path d="M145,175 Q135,155 140,130" fill="none" stroke="#1A0A2E" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+          <path d="M255,175 Q265,155 260,130" fill="none" stroke="#1A0A2E" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+          <!-- Hair highlight -->
+          <path d="M185,128 Q200,122 215,128" fill="none" stroke="rgba(255,210,122,0.2)" stroke-width="2"/>
+
+          <!-- Eyes -->
+          <!-- Left eye -->
+          <ellipse cx="175" cy="200" rx="14" ry="10" fill="#1A0A2E"/>
+          <ellipse cx="175" cy="200" rx="10" ry="9" fill="#2B1650"/>
+          <ellipse cx="175" cy="200" rx="7" ry="7" fill="#3B2060"/>
+          <circle cx="175" cy="200" r="5" fill="#4B2EA0" opacity="0.8"/>
+          <ellipse cx="172" cy="197" rx="2.5" ry="2" fill="#F8F4FF" opacity="0.7"/>
+          <ellipse cx="179" cy="204" rx="1" ry="1.2" fill="#F8F4FF" opacity="0.4"/>
+          <!-- Eye glow -->
+          <ellipse cx="175" cy="200" rx="12" ry="9" fill="none" stroke="rgba(217,200,255,0.3)" stroke-width="1.5"/>
+
+          <!-- Right eye -->
+          <ellipse cx="225" cy="200" rx="14" ry="10" fill="#1A0A2E"/>
+          <ellipse cx="225" cy="200" rx="10" ry="9" fill="#2B1650"/>
+          <ellipse cx="225" cy="200" rx="7" ry="7" fill="#3B2060"/>
+          <circle cx="225" cy="200" r="5" fill="#4B2EA0" opacity="0.8"/>
+          <ellipse cx="222" cy="197" rx="2.5" ry="2" fill="#F8F4FF" opacity="0.7"/>
+          <ellipse cx="229" cy="204" rx="1" ry="1.2" fill="#F8F4FF" opacity="0.4"/>
+          <ellipse cx="225" cy="200" rx="12" ry="9" fill="none" stroke="rgba(217,200,255,0.3)" stroke-width="1.5"/>
+
+          <!-- Eyebrows -->
+          <path d="M162,188 Q175,183 188,186" fill="none" stroke="#1A0A2E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M212,186 Q225,183 238,188" fill="none" stroke="#1A0A2E" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- Nose -->
+          <path d="M197,215 Q200,220 203,215" fill="none" stroke="rgba(150,80,50,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Mouth -->
+          <path d="M186,232 Q200,240 214,232" fill="none" stroke="#D4956A" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          <path d="M190,232 Q200,236 210,232" fill="rgba(200,100,80,0.2)"/>
+
+          <!-- Blush -->
+          <ellipse cx="163" cy="218" rx="12" ry="6" fill="#F3B4D8" opacity="0.25"/>
+          <ellipse cx="237" cy="218" rx="12" ry="6" fill="#F3B4D8" opacity="0.25"/>
+
+          <!-- Ear rings -->
+          <circle cx="142" cy="205" r="4" fill="none" stroke="#FFD27A" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="258" cy="205" r="4" fill="none" stroke="#FFD27A" stroke-width="1.5" opacity="0.7"/>
+          <!-- Ear ring gems -->
+          <circle cx="142" cy="212" r="3" fill="#F3B4D8" opacity="0.8"/>
+          <circle cx="258" cy="212" r="3" fill="#F3B4D8" opacity="0.8"/>
+
+          <!-- Crown / Headpiece -->
+          <g filter="url(#portraitGlow)">
+            <path d="M170,138 L175,118 L185,130 L200,110 L215,130 L225,118 L230,138Z" fill="#FFD27A" opacity="0.85"/>
+            <path d="M170,138 L175,118 L185,130 L200,110 L215,130 L225,118 L230,138Z" fill="#FFD27A" opacity="0.4" filter="url(#portraitGlow)"/>
+            <circle cx="200" cy="112" r="6" fill="#F3B4D8" opacity="0.9"/>
+            <circle cx="200" cy="112" r="4" fill="#FFD27A"/>
+            <circle cx="185" cy="131" r="4" fill="#D9C8FF" opacity="0.85"/>
+            <circle cx="215" cy="131" r="4" fill="#D9C8FF" opacity="0.85"/>
+          </g>
+
+          <!-- Floating magical particles around character -->
+          <g fill="#FFD27A" opacity="0.7">
+            <circle cx="100" cy="220" r="2.5"><animate attributeName="cy" values="220;200;220" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0.2;0.7" dur="4s" repeatCount="indefinite"/></circle>
+            <circle cx="300" cy="230" r="2"><animate attributeName="cy" values="230;210;230" dur="3.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.5;0.1;0.5" dur="3.5s" repeatCount="indefinite"/></circle>
+            <circle cx="80" cy="300" r="1.5" fill="#F3B4D8"><animate attributeName="cy" values="300;280;300" dur="5s" repeatCount="indefinite"/></circle>
+            <circle cx="320" cy="180" r="2" fill="#D9C8FF"><animate attributeName="cy" values="180;160;180" dur="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0.1;0.6" dur="4.5s" repeatCount="indefinite"/></circle>
+            <circle cx="60" cy="160" r="1.5"><animate attributeName="cy" values="160;140;160" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="340" cy="280" r="1.5" fill="#F3B4D8"><animate attributeName="cy" values="280;260;280" dur="6s" repeatCount="indefinite"/></circle>
+          </g>
+
+          <!-- Magic trails / sparkles -->
+          <g opacity="0.5">
+            <path d="M100,250 Q120,240 140,250" fill="none" stroke="#FFD27A" stroke-width="1" opacity="0.4">
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <path d="M260,250 Q280,240 300,250" fill="none" stroke="#F3B4D8" stroke-width="1" opacity="0.4">
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="4s" repeatCount="indefinite"/>
+            </path>
+          </g>
+
+          <!-- Ambient light effect -->
+          <ellipse cx="200" cy="400" rx="140" ry="30" fill="#FFD27A" opacity="0.04"/>
+
+          <!-- Border frame -->
+          <rect x="1" y="1" width="398" height="478" rx="18" fill="none" stroke="rgba(217,200,255,0.12)" stroke-width="2"/>
+          <rect x="8" y="8" width="384" height="464" rx="14" fill="none" stroke="rgba(255,210,122,0.06)" stroke-width="1"/>
+        </svg>
+
+        <!-- Glow overlays -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(27,16,40,0.5),transparent);pointer-events:none;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREATIVE JOURNEY TIMELINE ===== -->
+<section class="timeline-section">
+  <div style="text-align:center;margin-bottom:4rem;" data-reveal>
+    <div class="section-label" style="justify-content:center;">The Creative Path</div>
+    <h2 class="section-title">My <span class="highlight">Journey</span> Through Art</h2>
+    <p class="section-desc" style="margin:0 auto;text-align:center;max-width:500px;">Every milestone a stepping stone into a deeper, more magical creative universe.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-title">🌱 The Beginning</div>
+        <div class="timeline-text">Started my creative journey with basic digital illustration and fell in love with the limitless possibilities of art.</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2020</div>
+        <div class="timeline-title">🎓 Formal Education</div>
+        <div class="timeline-text">Enrolled in Fine Arts & Digital Media program. Discovered my passion for animation and motion graphics.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-title">🚀 First Breakthrough</div>
+        <div class="timeline-text">Completed first commissioned animation project. Won regional digital art competition. Learned Blender and After Effects.</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-title">🎬 Film & VFX</div>
+        <div class="timeline-text">Worked on indie animated shorts and visual effects for music videos. Developed signature cinematic style.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-title">🌟 Going Professional</div>
+        <div class="timeline-text">Launched freelance practice. Built portfolio of 30+ projects. Collaborated with studios and independent creators worldwide.</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content" style="opacity:0;pointer-events:none;"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2024-25</div>
+        <div class="timeline-title">✨ Present Vision</div>
+        <div class="timeline-text">Crafting immersive fantasy worlds, cinematic portfolios, and animated experiences that blur the line between art and magic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS SECTION ===== -->
+<section class="skills-section">
+  <div style="text-align:center;margin-bottom:2rem;" data-reveal>
+    <div class="section-label" style="justify-content:center;">Magical Toolkit</div>
+    <h2 class="section-title">Skills & <span class="highlight">Mastery</span></h2>
+    <p class="section-desc" style="margin:0 auto;text-align:center;max-width:450px;">Tools and disciplines I've mastered on my journey through digital artistry.</p>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">🎨</span>
+      <div class="skill-name">Photoshop</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:92%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">92% Mastery</div>
+    </div>
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">🏺</span>
+      <div class="skill-name">Blender 3D</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:85%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">85% Mastery</div>
+    </div>
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">✨</span>
+      <div class="skill-name">After Effects</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:90%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">90% Mastery</div>
+    </div>
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">🎬</span>
+      <div class="skill-name">Premiere Pro</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:88%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">88% Mastery</div>
+    </div>
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">🖌</span>
+      <div class="skill-name">Illustration</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:95%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">95% Mastery</div>
+    </div>
+    <div class="skill-card" data-reveal>
+      <span class="skill-icon">🎭</span>
+      <div class="skill-name">Character Animation</div>
+      <div class="skill-bar-container"><div class="skill-bar" style="width:87%;"></div></div>
+      <div style="font-size:0.7rem;color:rgba(217,200,255,0.4);margin-top:0.5rem;letter-spacing:0.1em;">87% Mastery</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE ===== -->
+<div class="divider"></div>
+<section class="quote-section" data-reveal>
+  <p class="quote-text">
+    "I don't just create art. I build worlds where imagination breathes, stories live, and magic is real — one frame at a time."
+  </p>
+  <div class="quote-author">— Laksh Raj, on Creative Philosophy</div>
+</section>
+<div class="divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Laksh Raj</div>
+        <div class="footer-tagline">Crafting worlds through motion & imagination.</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Behance">🎨</a>
+        <a href="#" class="social-icon" title="Instagram">📷</a>
+        <a href="#" class="social-icon" title="YouTube">▶</a>
+        <a href="#" class="social-icon" title="ArtStation">🖌</a>
+        <a href="#" class="social-icon" title="LinkedIn">💼</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laksh Raj. All rights reserved.</span>
+      <span class="footer-heart">Made with <span>✦</span> magic & code</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
