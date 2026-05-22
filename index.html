@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laksh Raj — Creative Developer & Digital Artist</title>
+  <meta name="description" content="Laksh Raj — Crafting worlds through motion & imagination. Creative developer, animator, and digital artist." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen">
+  <div class="loading-logo">Laksh Raj</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  <div class="loading-text">Entering the fantasy world...</div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- Page Transition Overlay -->
+<div class="page-transition">
+  <div class="page-transition-overlay" id="page-transition-overlay"></div>
+</div>
+
+<!-- Ambient Orbs -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+
+<!-- Particle Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Petals -->
+<div class="petals-container" id="petals-container"></div>
+
+<!-- Fog -->
+<div class="fog-container">
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">Laksh Raj</a>
+
+  <div class="nav-toggle" id="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <a href="index.html#enter" class="nav-cta"><span>✦ Enter My World</span></a>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="enter">
+  <div class="hero-bg-gradient"></div>
+
+  <div class="hero-content">
+    <!-- LEFT SIDE -->
+    <div class="hero-left">
+      <div class="hero-tag">✦ Creative Developer & Digital Artist</div>
+
+      <h1 class="hero-title">
+        <span class="line-1">Crafting Worlds</span>
+        <span class="line-2">Through Motion</span>
+        <span class="line-3">&amp; Imagination</span>
+      </h1>
+
+      <p class="hero-desc">
+        I breathe life into digital worlds — weaving together animation, art, and code to craft experiences that feel like stepping into a living fantasy universe.
+      </p>
+
+      <div class="hero-btns">
+        <a href="portfolio.html" class="btn-primary">
+          <span>✦ Explore My Work</span>
+        </a>
+        <a href="#showreel" class="btn-secondary">
+          <span>▶ Watch Showreel</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE - Animated Fantasy Scene -->
+    <div class="hero-right">
+      <div class="hero-scene">
+        <!-- Animated SVG Fantasy Scene -->
+        <svg class="fantasy-scene" viewBox="0 0 600 580" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#2D1B4E"/>
+              <stop offset="50%" stop-color="#1B1028"/>
+              <stop offset="100%" stop-color="#0D0818"/>
+            </radialGradient>
+            <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F8F4FF" stop-opacity="0.9"/>
+              <stop offset="40%" stop-color="#D9C8FF" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#D9C8FF" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="lanternGlow1" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#FFD27A" stop-opacity="1"/>
+              <stop offset="60%" stop-color="#FFB36B" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#FFB36B" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="waterGrad" cx="50%" cy="0%" r="100%">
+              <stop offset="0%" stop-color="#1B1028" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#0D0818" stop-opacity="0.95"/>
+            </radialGradient>
+            <filter id="glow1">
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softGlow">
+              <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="bridgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#3D2060"/>
+              <stop offset="100%" stop-color="#1B1028"/>
+            </linearGradient>
+            <linearGradient id="treeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F3B4D8" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#D9C8FF" stop-opacity="0.4"/>
+            </linearGradient>
+            <clipPath id="sceneClip">
+              <rect x="0" y="0" width="600" height="580" rx="20"/>
+            </clipPath>
+          </defs>
+
+          <g clip-path="url(#sceneClip)">
+            <!-- Sky Background -->
+            <rect width="600" height="580" fill="url(#skyGrad)"/>
+
+            <!-- Stars -->
+            <g opacity="0.8">
+              <circle cx="80" cy="40" r="1" fill="#F8F4FF" opacity="0.9"><animate attributeName="opacity" values="0.9;0.3;0.9" dur="2.3s" repeatCount="indefinite"/></circle>
+              <circle cx="150" cy="25" r="1.5" fill="#FFD27A" opacity="0.8"><animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/></circle>
+              <circle cx="240" cy="55" r="1" fill="#F8F4FF" opacity="0.7"><animate attributeName="opacity" values="0.7;0.1;0.7" dur="3s" repeatCount="indefinite"/></circle>
+              <circle cx="380" cy="20" r="1.2" fill="#D9C8FF" opacity="0.9"><animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.5s" repeatCount="indefinite"/></circle>
+              <circle cx="470" cy="45" r="1" fill="#F8F4FF" opacity="0.6"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" repeatCount="indefinite"/></circle>
+              <circle cx="530" cy="30" r="1.5" fill="#FFD27A" opacity="0.7"><animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.8s" repeatCount="indefinite"/></circle>
+              <circle cx="50" cy="80" r="1" fill="#F3B4D8" opacity="0.8"><animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/></circle>
+              <circle cx="340" cy="70" r="1" fill="#F8F4FF" opacity="0.6"><animate attributeName="opacity" values="0.6;0.1;0.6" dur="3.2s" repeatCount="indefinite"/></circle>
+              <circle cx="560" cy="65" r="1.2" fill="#D9C8FF" opacity="0.7"><animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.1s" repeatCount="indefinite"/></circle>
+              <circle cx="110" cy="110" r="1" fill="#FFD27A" opacity="0.5"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.7s" repeatCount="indefinite"/></circle>
+              <circle cx="420" cy="95" r="1.3" fill="#F8F4FF" opacity="0.8"><animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.9s" repeatCount="indefinite"/></circle>
+              <circle cx="490" cy="120" r="1" fill="#F3B4D8" opacity="0.6"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="3.5s" repeatCount="indefinite"/></circle>
+            </g>
+
+            <!-- Moon -->
+            <circle cx="480" cy="90" r="55" fill="url(#moonGlow)" filter="url(#softGlow)"/>
+            <circle cx="480" cy="90" r="38" fill="#F8F4FF" opacity="0.92"/>
+            <circle cx="480" cy="90" r="38" fill="#1B1028" opacity="0.08"/>
+            <!-- Moon craters -->
+            <circle cx="470" cy="82" r="5" fill="rgba(217,200,255,0.15)"/>
+            <circle cx="490" cy="98" r="3" fill="rgba(217,200,255,0.12)"/>
+            <circle cx="463" cy="99" r="2.5" fill="rgba(217,200,255,0.1)"/>
+
+            <!-- Far Mountains -->
+            <g opacity="0.35">
+              <polygon points="0,300 120,140 240,300" fill="#2D1B4E"/>
+              <polygon points="100,300 220,120 340,300" fill="#241540"/>
+              <polygon points="250,300 370,150 490,300" fill="#2D1B4E"/>
+              <polygon points="380,300 500,130 600,300" fill="#241540"/>
+              <polygon points="480,300 600,160 600,300" fill="#2D1B4E"/>
+            </g>
+
+            <!-- Mid Mountains -->
+            <g opacity="0.55">
+              <polygon points="0,340 90,210 180,340" fill="#1E1235"/>
+              <polygon points="70,340 180,190 290,340" fill="#241540"/>
+              <polygon points="200,340 320,200 440,340" fill="#1E1235"/>
+              <polygon points="360,340 460,220 560,340" fill="#241540"/>
+              <polygon points="500,340 590,230 600,340" fill="#1E1235"/>
+            </g>
+
+            <!-- Cherry Blossom Trees LEFT -->
+            <g filter="url(#glow1)">
+              <!-- Tree trunk left -->
+              <rect x="25" y="280" width="8" height="160" rx="4" fill="#3D2060" opacity="0.8"/>
+              <rect x="40" y="310" width="6" height="120" rx="3" fill="#3D2060" opacity="0.7"/>
+              <!-- Branches -->
+              <line x1="29" y1="320" x2="5" y2="280" stroke="#3D2060" stroke-width="3" opacity="0.8"/>
+              <line x1="29" y1="300" x2="60" y2="270" stroke="#3D2060" stroke-width="3" opacity="0.8"/>
+              <line x1="43" y1="330" x2="75" y2="300" stroke="#3D2060" stroke-width="2.5" opacity="0.7"/>
+              <!-- Blossoms left -->
+              <g opacity="0.85">
+                <ellipse cx="15" cy="268" rx="28" ry="20" fill="url(#treeGrad)" opacity="0.75"/>
+                <ellipse cx="45" cy="258" rx="32" ry="22" fill="url(#treeGrad)" opacity="0.8"/>
+                <ellipse cx="28" cy="245" rx="25" ry="18" fill="#F3B4D8" opacity="0.6"/>
+                <ellipse cx="65" cy="288" rx="22" ry="16" fill="url(#treeGrad)" opacity="0.7"/>
+                <ellipse cx="5" cy="250" rx="18" ry="14" fill="#F3B4D8" opacity="0.55"/>
+              </g>
+            </g>
+
+            <!-- Cherry Blossom Trees RIGHT -->
+            <g filter="url(#glow1)">
+              <rect x="565" y="270" width="8" height="170" rx="4" fill="#3D2060" opacity="0.8"/>
+              <rect x="550" y="300" width="6" height="130" rx="3" fill="#3D2060" opacity="0.7"/>
+              <line x1="569" y1="310" x2="595" y2="270" stroke="#3D2060" stroke-width="3" opacity="0.8"/>
+              <line x1="569" y1="290" x2="535" y2="258" stroke="#3D2060" stroke-width="3" opacity="0.8"/>
+              <line x1="553" y1="318" x2="520" y2="295" stroke="#3D2060" stroke-width="2.5" opacity="0.7"/>
+              <g opacity="0.85">
+                <ellipse cx="588" cy="258" rx="26" ry="19" fill="url(#treeGrad)" opacity="0.75"/>
+                <ellipse cx="555" cy="248" rx="30" ry="21" fill="url(#treeGrad)" opacity="0.8"/>
+                <ellipse cx="575" cy="237" rx="23" ry="17" fill="#F3B4D8" opacity="0.6"/>
+                <ellipse cx="530" cy="277" rx="20" ry="15" fill="url(#treeGrad)" opacity="0.7"/>
+              </g>
+            </g>
+
+            <!-- Torii Gate -->
+            <g filter="url(#glow1)">
+              <!-- Main pillars -->
+              <rect x="210" y="270" width="16" height="200" rx="4" fill="#C0392B" opacity="0.85"/>
+              <rect x="374" y="270" width="16" height="200" rx="4" fill="#C0392B" opacity="0.85"/>
+              <!-- Top beam -->
+              <rect x="185" y="252" width="230" height="20" rx="5" fill="#C0392B" opacity="0.9"/>
+              <!-- Curved top beam ends -->
+              <path d="M185,252 Q180,245 195,240 L220,252" fill="#C0392B" opacity="0.9"/>
+              <path d="M415,252 Q420,245 405,240 L380,252" fill="#C0392B" opacity="0.9"/>
+              <!-- Second beam -->
+              <rect x="200" y="285" width="200" height="12" rx="3" fill="#C0392B" opacity="0.8"/>
+              <!-- Glow effect on gate -->
+              <rect x="210" y="270" width="16" height="200" rx="4" fill="#FF6B6B" opacity="0.2" filter="url(#softGlow)"/>
+              <rect x="374" y="270" width="16" height="200" rx="4" fill="#FF6B6B" opacity="0.2" filter="url(#softGlow)"/>
+              <rect x="185" y="252" width="230" height="20" rx="5" fill="#FF6B6B" opacity="0.2" filter="url(#softGlow)"/>
+            </g>
+
+            <!-- Floating Bridge -->
+            <g>
+              <ellipse cx="300" cy="420" rx="200" ry="25" fill="url(#bridgeGrad)" opacity="0.9"/>
+              <rect x="100" y="410" width="400" height="18" rx="5" fill="#3D2060" opacity="0.8"/>
+              <!-- Bridge planks -->
+              <g fill="#4A2870" opacity="0.6">
+                <rect x="115" y="410" width="12" height="18" rx="2"/>
+                <rect x="140" y="410" width="12" height="18" rx="2"/>
+                <rect x="165" y="410" width="12" height="18" rx="2"/>
+                <rect x="190" y="410" width="12" height="18" rx="2"/>
+                <rect x="215" y="410" width="12" height="18" rx="2"/>
+                <rect x="240" y="410" width="12" height="18" rx="2"/>
+                <rect x="265" y="410" width="12" height="18" rx="2"/>
+                <rect x="290" y="410" width="12" height="18" rx="2"/>
+                <rect x="315" y="410" width="12" height="18" rx="2"/>
+                <rect x="340" y="410" width="12" height="18" rx="2"/>
+                <rect x="365" y="410" width="12" height="18" rx="2"/>
+                <rect x="390" y="410" width="12" height="18" rx="2"/>
+                <rect x="415" y="410" width="12" height="18" rx="2"/>
+                <rect x="440" y="410" width="12" height="18" rx="2"/>
+                <rect x="465" y="410" width="12" height="18" rx="2"/>
+              </g>
+              <!-- Bridge railings -->
+              <g fill="none" stroke="#6B3A8C" stroke-width="2" opacity="0.7">
+                <line x1="105" y1="410" x2="495" y2="410"/>
+                <line x1="105" y1="400" x2="495" y2="400"/>
+                <line x1="120" y1="395" x2="120" y2="428"/>
+                <line x1="160" y1="393" x2="160" y2="428"/>
+                <line x1="200" y1="392" x2="200" y2="428"/>
+                <line x1="240" y1="392" x2="240" y2="428"/>
+                <line x1="280" y1="392" x2="280" y2="428"/>
+                <line x1="320" y1="392" x2="320" y2="428"/>
+                <line x1="360" y1="392" x2="360" y2="428"/>
+                <line x1="400" y1="392" x2="400" y2="428"/>
+                <line x1="440" y1="393" x2="440" y2="428"/>
+                <line x1="480" y1="395" x2="480" y2="428"/>
+              </g>
+            </g>
+
+            <!-- Water Reflection -->
+            <rect x="0" y="440" width="600" height="140" fill="url(#waterGrad)" opacity="0.95"/>
+
+            <!-- Water ripples -->
+            <g opacity="0.2">
+              <ellipse cx="300" cy="460" rx="180" ry="8" fill="none" stroke="#D9C8FF" stroke-width="1">
+                <animate attributeName="rx" values="180;220;180" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.2;0.05;0.2" dur="4s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="300" cy="480" rx="140" ry="6" fill="none" stroke="#D9C8FF" stroke-width="1">
+                <animate attributeName="rx" values="140;170;140" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.15;0.05;0.15" dur="3s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="300" cy="500" rx="100" ry="5" fill="none" stroke="#FFD27A" stroke-width="1">
+                <animate attributeName="rx" values="100;130;100" dur="5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.2;0.05;0.2" dur="5s" repeatCount="indefinite"/>
+              </ellipse>
+            </g>
+
+            <!-- Moon Reflection in water -->
+            <ellipse cx="480" cy="490" rx="25" ry="8" fill="#F8F4FF" opacity="0.12">
+              <animate attributeName="ry" values="8;12;8" dur="3s" repeatCount="indefinite"/>
+            </ellipse>
+
+            <!-- Floating Lanterns -->
+            <!-- Lantern 1 -->
+            <g filter="url(#glow1)">
+              <g>
+                <animate attributeName="transform" type="translate" values="0,0;0,-18;0,0" dur="4s" repeatCount="indefinite"/>
+                <ellipse cx="155" cy="195" rx="16" ry="22" fill="url(#lanternGlow1)" opacity="0.95"/>
+                <ellipse cx="155" cy="185" rx="12" ry="8" fill="#FFD27A" opacity="0.6"/>
+                <rect x="152" y="173" width="6" height="8" rx="1" fill="#FFB36B" opacity="0.7"/>
+                <rect x="148" y="217" width="14" height="4" rx="2" fill="#FFB36B" opacity="0.6"/>
+                <line x1="155" y1="165" x2="155" y2="173" stroke="#FFD27A" stroke-width="1.5" opacity="0.7"/>
+                <!-- Glow halo -->
+                <ellipse cx="155" cy="195" rx="30" ry="35" fill="#FFD27A" opacity="0.1" filter="url(#softGlow)"/>
+              </g>
+            </g>
+
+            <!-- Lantern 2 -->
+            <g filter="url(#glow1)">
+              <g>
+                <animate attributeName="transform" type="translate" values="0,0;0,-22;0,0" dur="5.5s" repeatCount="indefinite"/>
+                <ellipse cx="445" cy="175" rx="14" ry="19" fill="url(#lanternGlow1)" opacity="0.9"/>
+                <ellipse cx="445" cy="167" rx="10" ry="7" fill="#FFD27A" opacity="0.55"/>
+                <rect x="442" y="156" width="6" height="7" rx="1" fill="#FFB36B" opacity="0.65"/>
+                <rect x="439" y="194" width="12" height="4" rx="2" fill="#FFB36B" opacity="0.6"/>
+                <line x1="445" y1="149" x2="445" y2="156" stroke="#FFD27A" stroke-width="1.5" opacity="0.7"/>
+                <ellipse cx="445" cy="175" rx="28" ry="32" fill="#FFD27A" opacity="0.08" filter="url(#softGlow)"/>
+              </g>
+            </g>
+
+            <!-- Lantern 3 (small, high) -->
+            <g filter="url(#glow1)">
+              <g>
+                <animate attributeName="transform" type="translate" values="0,0;5,-15;0,0" dur="6s" repeatCount="indefinite"/>
+                <ellipse cx="300" cy="130" rx="10" ry="14" fill="url(#lanternGlow1)" opacity="0.8"/>
+                <ellipse cx="300" cy="124" rx="7" ry="5" fill="#FFD27A" opacity="0.5"/>
+                <rect x="297" y="116" width="6" height="6" rx="1" fill="#FFB36B" opacity="0.6"/>
+                <line x1="300" y1="110" x2="300" y2="116" stroke="#FFD27A" stroke-width="1" opacity="0.6"/>
+                <ellipse cx="300" cy="130" rx="22" ry="25" fill="#FFD27A" opacity="0.06" filter="url(#softGlow)"/>
+              </g>
+            </g>
+
+            <!-- Lantern 4 (tiny) -->
+            <g filter="url(#glow1)">
+              <g>
+                <animate attributeName="transform" type="translate" values="-3,0;3,-12;-3,0" dur="7s" repeatCount="indefinite"/>
+                <ellipse cx="85" cy="155" rx="9" ry="12" fill="url(#lanternGlow1)" opacity="0.75"/>
+                <line x1="85" y1="143" x2="85" y2="148" stroke="#FFD27A" stroke-width="1" opacity="0.6"/>
+                <ellipse cx="85" cy="155" rx="20" ry="22" fill="#FFD27A" opacity="0.05" filter="url(#softGlow)"/>
+              </g>
+            </g>
+
+            <!-- Lantern 5 -->
+            <g filter="url(#glow1)">
+              <g>
+                <animate attributeName="transform" type="translate" values="0,0;-4,-20;0,0" dur="4.8s" repeatCount="indefinite"/>
+                <ellipse cx="515" cy="145" rx="11" ry="15" fill="url(#lanternGlow1)" opacity="0.85"/>
+                <line x1="515" y1="130" x2="515" y2="135" stroke="#FFD27A" stroke-width="1" opacity="0.6"/>
+                <ellipse cx="515" cy="145" rx="24" ry="28" fill="#FFD27A" opacity="0.07" filter="url(#softGlow)"/>
+              </g>
+            </g>
+
+            <!-- Atmospheric fog layer -->
+            <rect x="0" y="380" width="600" height="80" fill="url(#skyGrad)" opacity="0.3"/>
+
+            <!-- Ground fog -->
+            <ellipse cx="300" cy="440" rx="320" ry="30" fill="#2D1B4E" opacity="0.5"/>
+
+            <!-- Falling petals -->
+            <g fill="#F3B4D8" opacity="0.7">
+              <ellipse cx="190" cy="200" rx="4" ry="3" transform="rotate(-30 190 200)">
+                <animateTransform attributeName="transform" type="rotate" from="-30 190 200" to="60 190 560" dur="8s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="190;220;240;210;190" dur="8s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="200;280;360;440;560" dur="8s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="350" cy="150" rx="3.5" ry="2.5" transform="rotate(20 350 150)">
+                <animateTransform attributeName="transform" type="rotate" from="20 350 150" to="-40 380 550" dur="10s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="350;330;360;340;350" dur="10s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="150;240;330;430;550" dur="10s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="120" cy="180" rx="3" ry="2" transform="rotate(-15 120 180)">
+                <animateTransform attributeName="transform" type="rotate" from="-15 120 180" to="45 140 560" dur="12s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="120;150;130;160;120" dur="12s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="180;270;360;450;560" dur="12s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="450" cy="220" rx="4" ry="3" transform="rotate(10 450 220)" fill="#D9C8FF">
+                <animateTransform attributeName="transform" type="rotate" from="10 450 220" to="-50 420 560" dur="9s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="450;470;440;460;450" dur="9s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="220;310;390;480;560" dur="9s" repeatCount="indefinite"/>
+              </ellipse>
+              <ellipse cx="280" cy="100" rx="3" ry="2" transform="rotate(-25 280 100)" fill="#FFD27A">
+                <animateTransform attributeName="transform" type="rotate" from="-25 280 100" to="55 300 560" dur="11s" repeatCount="indefinite"/>
+                <animate attributeName="cx" values="280;310;290;320;280" dur="11s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="100;200;300;400;560" dur="11s" repeatCount="indefinite"/>
+              </ellipse>
+            </g>
+
+            <!-- Rounded border frame -->
+            <rect x="0" y="0" width="600" height="580" rx="20" fill="none" stroke="rgba(217,200,255,0.1)" stroke-width="2"/>
+          </g>
+        </svg>
+
+        <!-- Floating particles overlay on hero scene -->
+        <div class="particle" style="width:4px;height:4px;background:rgba(255,210,122,0.8);top:20%;left:15%;animation-duration:3s;"></div>
+        <div class="particle" style="width:3px;height:3px;background:rgba(243,180,216,0.8);top:40%;left:80%;animation-duration:4s;animation-delay:-1s;"></div>
+        <div class="particle" style="width:5px;height:5px;background:rgba(217,200,255,0.7);top:70%;left:30%;animation-duration:5s;animation-delay:-2s;"></div>
+        <div class="particle" style="width:3px;height:3px;background:rgba(255,210,122,0.6);top:15%;left:60%;animation-duration:3.5s;animation-delay:-0.5s;"></div>
+        <div class="particle" style="width:4px;height:4px;background:rgba(243,180,216,0.7);top:60%;left:90%;animation-duration:4.5s;animation-delay:-1.5s;"></div>
+        <div class="particle" style="width:6px;height:6px;background:rgba(255,179,107,0.5);top:80%;left:10%;animation-duration:6s;animation-delay:-3s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== STATS SECTION ===== -->
+<section class="stats-section" id="journey">
+  <div class="stats-inner" data-reveal>
+    <div class="stat-item">
+      <span class="stat-number" data-target="48" data-suffix="+">0+</span>
+      <span class="stat-label">Projects Completed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="5" data-suffix="+">0+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="30" data-suffix="+">0+</span>
+      <span class="stat-label">Happy Clients</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="12" data-suffix="">0</span>
+      <span class="stat-label">Awards Won</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CINEMATIC CARD SECTION ===== -->
+<section class="cinematic-section">
+  <div class="cinematic-grid">
+    <!-- Magic Cards Scene -->
+    <div class="cinematic-scene-wrapper" data-reveal="left">
+      <!-- Floating magic cards -->
+      <div class="magic-card card-1">
+        <span class="card-icon">🎬</span>
+        <div class="card-label">Animation</div>
+        <div class="card-text">Breathing life into every frame with cinematic precision and artistic soul</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(255,210,122,0.05),transparent);border-radius:inherit;"></div>
+      </div>
+
+      <div class="magic-card card-2">
+        <span class="card-icon">🎨</span>
+        <div class="card-label">Digital Art</div>
+        <div class="card-text">Fantasy worlds painted with imagination and technical mastery</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(243,180,216,0.05),transparent);border-radius:inherit;"></div>
+      </div>
+
+      <div class="magic-card card-3">
+        <span class="card-icon">⚡</span>
+        <div class="card-label">Motion VFX</div>
+        <div class="card-text">Visual magic that transforms ideas into breathtaking experiences</div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(217,200,255,0.05),transparent);border-radius:inherit;"></div>
+      </div>
+
+      <!-- Candles -->
+      <div class="candle" style="left:20%;animation-duration:3s;">
+        <div class="candle-body"><div class="candle-flame"></div></div>
+      </div>
+      <div class="candle" style="left:50%;animation-duration:4s;animation-delay:-1s;">
+        <div class="candle-body" style="height:65px;"><div class="candle-flame"></div></div>
+      </div>
+      <div class="candle" style="left:75%;animation-duration:3.5s;animation-delay:-2s;">
+        <div class="candle-body" style="height:35px;"><div class="candle-flame"></div></div>
+      </div>
+
+      <!-- Ambient glow in scene -->
+      <div style="position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:300px;height:100px;background:radial-gradient(ellipse,rgba(255,210,122,0.08),transparent);border-radius:50%;pointer-events:none;"></div>
+    </div>
+
+    <!-- Text Side -->
+    <div data-reveal="right">
+      <div class="section-label">The Creative Process</div>
+      <h2 class="section-title">
+        Where Magic Meets<br/>
+        <span class="highlight">Craftsmanship</span>
+      </h2>
+      <p class="section-desc">
+        Every project I undertake is a journey into an unexplored world. I blend technical precision with artistic intuition to create experiences that resonate emotionally — like stepping into the pages of a living fantasy.
+      </p>
+      <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:12px;backdrop-filter:blur(10px);">
+          <span style="font-size:1.5rem;filter:drop-shadow(0 0 8px rgba(255,210,122,0.5));">🌸</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:0.85rem;color:var(--lantern-gold);margin-bottom:0.2rem;">Concept to Creation</div>
+            <div style="font-size:0.8rem;color:rgba(217,200,255,0.6);line-height:1.5;">From initial spark to polished masterpiece, guided by vision and heart.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:12px;backdrop-filter:blur(10px);">
+          <span style="font-size:1.5rem;filter:drop-shadow(0 0 8px rgba(243,180,216,0.5));">🎴</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:0.85rem;color:var(--sakura-pink);margin-bottom:0.2rem;">Storytelling & Emotion</div>
+            <div style="font-size:0.8rem;color:rgba(217,200,255,0.6);line-height:1.5;">Every frame carries a feeling, every design tells a story worth remembering.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;background:rgba(36,22,58,0.4);border:1px solid rgba(217,200,255,0.08);border-radius:12px;backdrop-filter:blur(10px);">
+          <span style="font-size:1.5rem;filter:drop-shadow(0 0 8px rgba(217,200,255,0.5));">✨</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:0.85rem;color:var(--mist-lavender);margin-bottom:0.2rem;">Cinematic Excellence</div>
+            <div style="font-size:0.8rem;color:rgba(217,200,255,0.6);line-height:1.5;">Delivering premium-quality output that exceeds expectations every time.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <a href="about.html" class="btn-primary"><span>✦ My Story</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED WORK SECTION ===== -->
+<section class="featured-section">
+  <div class="featured-header" data-reveal>
+    <div class="section-label">Featured Work</div>
+    <h2 class="section-title">Cinematic <span class="highlight">Creations</span></h2>
+    <p class="section-desc">Each project is a universe unto itself — crafted with passion, precision, and boundless imagination.</p>
+  </div>
+
+  <div class="project-showcase">
+    <!-- Card 1 - Large -->
+    <div class="project-card" data-reveal data-num="01">
+      <div class="project-card-bg" style="background:linear-gradient(135deg,rgba(179,102,255,0.15),rgba(27,16,40,0.9));"></div>
+      <div class="proj-illustration">🎬</div>
+      <div class="project-card-overlay"></div>
+      <div class="project-card-glow"></div>
+      <div class="project-card-content">
+        <div class="project-cat">Animation Film</div>
+        <div class="project-name">The Last Dragon's Dream</div>
+        <div class="project-desc">A 3D animated short film exploring a mythical world through the eyes of the last dragon. Rendered in Blender with custom VFX compositing.</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="project-card" data-reveal data-num="02">
+      <div class="project-card-bg" style="background:linear-gradient(135deg,rgba(243,180,216,0.15),rgba(27,16,40,0.9));"></div>
+      <div class="proj-illustration">🌸</div>
+      <div class="project-card-overlay"></div>
+      <div class="project-card-glow"></div>
+      <div class="project-card-content">
+        <div class="project-cat">Fantasy Illustration</div>
+        <div class="project-name">Sakura Spirit Collection</div>
+        <div class="project-desc">A digital illustration series inspired by Japanese folklore and cherry blossom mythology.</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="project-card" data-reveal data-num="03">
+      <div class="project-card-bg" style="background:linear-gradient(135deg,rgba(255,210,122,0.12),rgba(27,16,40,0.9));"></div>
+      <div class="proj-illustration">⚡</div>
+      <div class="project-card-overlay"></div>
+      <div class="project-card-glow"></div>
+      <div class="project-card-content">
+        <div class="project-cat">Motion Graphics</div>
+        <div class="project-name">Celestial Brand Identity</div>
+        <div class="project-desc">Cinematic motion branding package for a luxury creative studio.</div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="project-card" data-reveal data-num="04">
+      <div class="project-card-bg" style="background:linear-gradient(135deg,rgba(255,179,107,0.12),rgba(27,16,40,0.9));"></div>
+      <div class="proj-illustration">🎭</div>
+      <div class="project-card-overlay"></div>
+      <div class="project-card-glow"></div>
+      <div class="project-card-content">
+        <div class="project-cat">Storyboarding</div>
+        <div class="project-name">Echoes of Tomorrow</div>
+        <div class="project-desc">Full storyboard for a sci-fi animated series pilot episode.</div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="project-card" data-reveal data-num="05">
+      <div class="project-card-bg" style="background:linear-gradient(135deg,rgba(217,200,255,0.12),rgba(27,16,40,0.9));"></div>
+      <div class="proj-illustration">🌟</div>
+      <div class="project-card-overlay"></div>
+      <div class="project-card-glow"></div>
+      <div class="project-card-content">
+        <div class="project-cat">VFX</div>
+        <div class="project-name">Astral Breakdown VFX</div>
+        <div class="project-desc">Visual effects compositing for an indie fantasy music video production.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;" data-reveal>
+    <a href="portfolio.html" class="btn-primary"><span>✦ View All Works</span></a>
+  </div>
+</section>
+
+<!-- ===== QUOTE SECTION ===== -->
+<div class="divider"></div>
+<section class="quote-section" data-reveal>
+  <p class="quote-text">
+    "Art is not what you see, but what you make others see — and I create worlds that pull you in, hold you breathless, and never let go."
+  </p>
+  <div class="quote-author">— Laksh RAj, Creative Developer & Digital Artist</div>
+</section>
+<div class="divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Laksh Raj</div>
+        <div class="footer-tagline">Crafting worlds through motion & imagination.</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Behance">🎨</a>
+        <a href="#" class="social-icon" title="Instagram">📷</a>
+        <a href="#" class="social-icon" title="YouTube">▶</a>
+        <a href="#" class="social-icon" title="ArtStation">🖌</a>
+        <a href="#" class="social-icon" title="LinkedIn">💼</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laksh Raj. All rights reserved.</span>
+      <span class="footer-heart">Made with <span>✦</span> magic & code</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Laksh Raj | Creative Developer & Digital Artist</title>
+  <meta name="description" content="Explore Laksh Raj's cinematic portfolio — animations, illustrations, VFX, motion graphics and more." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* Portfolio-specific extra styles */
+    .portfolio-hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(243,180,216,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(255,210,122,0.08) 0%, transparent 40%);
+    }
+
+    .portfolio-header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding-bottom: 2rem;
+    }
+
+    .filters-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media(max-width:768px){
+      .filters-wrapper { padding: 0 1.5rem; }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(13,8,24,0.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      max-width: 600px;
+      width: 90%;
+      background: rgba(36,22,58,0.8);
+      border: 1px solid rgba(217,200,255,0.15);
+      border-radius: 24px;
+      padding: 3rem;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.4s var(--transition-bounce);
+    }
+
+    .lightbox.open .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(217,200,255,0.1);
+      border: 1px solid rgba(217,200,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      font-size: 0.9rem;
+      color: var(--moonlight-white);
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,210,122,0.2);
+      border-color: var(--lantern-gold);
+    }
+
+    .lightbox-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block; text-align: center; }
+    .lightbox-cat { font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--lantern-gold); text-align:center; margin-bottom:0.5rem; }
+    .lightbox-title { font-family:'Cinzel',serif; font-size:1.8rem; color:var(--moonlight-white); text-align:center; margin-bottom:1rem; }
+    .lightbox-desc { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(217,200,255,0.75); line-height:1.8; text-align:center; margin-bottom:1.5rem; }
+    .lightbox-tags { display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center; }
+    .lightbox-tag { font-size:0.7rem; padding:0.3rem 0.9rem; background:rgba(255,210,122,0.08); border:1px solid rgba(255,210,122,0.2); border-radius:50px; color:var(--lantern-gold); }
+  </style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen">
+  <div class="loading-logo">Laksh Raj</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  <div class="loading-text">Entering the fantasy world...</div>
+</div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- Page Transition -->
+<div class="page-transition">
+  <div class="page-transition-overlay" id="page-transition-overlay"></div>
+</div>
+
+<!-- Ambient Orbs -->
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+<div class="ambient-orb orb-3"></div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="petals-container" id="petals-container"></div>
+<div class="fog-container">
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <span class="lightbox-icon" id="lb-icon">🎬</span>
+    <div class="lightbox-cat" id="lb-cat">Category</div>
+    <div class="lightbox-title" id="lb-title">Title</div>
+    <div class="lightbox-desc" id="lb-desc">Description</div>
+    <div class="lightbox-tags" id="lb-tags"></div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">Laksh Raj</a>
+  <div class="nav-toggle" id="nav-toggle">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="index.html#journey">Journey</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="index.html#enter" class="nav-cta"><span>✦ Enter My World</span></a>
+</nav>
+
+<!-- ===== PORTFOLIO HERO ===== -->
+<section class="portfolio-hero">
+  <div class="portfolio-hero-bg"></div>
+  <div class="portfolio-header-content">
+    <div class="hero-tag" style="opacity:1;animation:none;">✦ The Gallery</div>
+    <h1 class="hero-title" style="font-size:clamp(3rem,7vw,6rem);margin-bottom:1rem;opacity:1;animation:none;">
+      <span class="line-2">Portfolio</span>
+    </h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:rgba(217,200,255,0.7);max-width:500px;line-height:1.7;">
+      Each piece is a world unto itself — crafted with passion, precision, and a touch of cinematic magic.
+    </p>
+  </div>
+</section>
+
+<!-- ===== FILTERS ===== -->
+<div class="filters-wrapper">
+  <div class="portfolio-filters">
+    <button class="filter-btn active" data-filter="all">✦ All Works</button>
+    <button class="filter-btn" data-filter="animation">🎬 Animation</button>
+    <button class="filter-btn" data-filter="illustration">🖌 Illustration</button>
+    <button class="filter-btn" data-filter="motion">⚡ Motion Graphics</button>
+    <button class="filter-btn" data-filter="vfx">🌟 VFX</button>
+    <button class="filter-btn" data-filter="story">📖 Storyboarding</button>
+    <button class="filter-btn" data-filter="video">🎥 Video Editing</button>
+  </div>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<div class="portfolio-gallery">
+
+  <!-- Item 1 - Tall -->
+  <div class="gallery-item gallery-item-tall" data-category="animation" data-icon="🐉" data-title="The Last Dragon's Dream" data-cat="Animation Film" data-desc="A breathtaking 3D animated short film exploring a mythical world through the eyes of the last dragon alive. Rendered in Blender with custom particle systems and VFX compositing in After Effects." data-tags="Blender,After Effects,3D Animation,VFX">
+    <div class="gallery-item-inner">
+      <div class="gallery-bg-emoji">🐉</div>
+      <div class="gallery-overlay"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(179,102,255,0.1),rgba(27,16,40,0.95));"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Animation Film</div>
+        <div class="gallery-title">The Last Dragon's Dream</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 2 -->
+  <div class="gallery-item" data-category="illustration" data-icon="🌸" data-title="Sakura Spirit Collection" data-cat="Digital Illustration" data-desc="A 12-piece digital illustration series inspired by Japanese folklore, cherry blossom mythology, and the ethereal beauty of spirit worlds. Each piece tells a fragment of a larger ancient story." data-tags="Photoshop,Digital Illustration,Japanese Art,Folklore">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(243,180,216,0.12),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">🌸</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Digital Illustration</div>
+        <div class="gallery-title">Sakura Spirit Collection</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 3 - Wide -->
+  <div class="gallery-item gallery-item-wide" data-category="motion" data-icon="⚡" data-title="Celestial Brand Identity" data-cat="Motion Graphics" data-desc="Cinematic motion branding package for a luxury creative studio. Includes logo reveals, title sequences, lower thirds, and a full brand motion system built in After Effects." data-tags="After Effects,Motion Design,Branding,Cinema 4D">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(255,210,122,0.12),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">⚡</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Motion Graphics</div>
+        <div class="gallery-title">Celestial Brand Identity</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 4 - Tall -->
+  <div class="gallery-item gallery-item-tall" data-category="vfx" data-icon="🌟" data-title="Astral Breakdown VFX" data-cat="Visual Effects" data-desc="Complete visual effects compositing for an indie fantasy music video. Features particle systems, magical energy effects, atmospheric god rays, and seamless green screen integration." data-tags="After Effects,VFX,Compositing,Particle Systems">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(217,200,255,0.12),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">🌟</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Visual Effects</div>
+        <div class="gallery-title">Astral Breakdown VFX</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 5 -->
+  <div class="gallery-item" data-category="story" data-icon="📖" data-title="Echoes of Tomorrow" data-cat="Storyboarding" data-desc="Full storyboard treatment for a 6-episode sci-fi animated series pilot. 280+ panels covering action sequences, emotional character arcs, and world-building cinematography." data-tags="Storyboarding,Character Design,Pre-Production,Narrative">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(255,179,107,0.12),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">📖</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Storyboarding</div>
+        <div class="gallery-title">Echoes of Tomorrow</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 6 -->
+  <div class="gallery-item" data-category="video" data-icon="🎥" data-title="Moonlight Edit — Music Video" data-cat="Video Editing" data-desc="Atmospheric music video edit for an independent artist. Features color grading with a cinematic blue-gold palette, rhythmic cuts, and custom motion graphics transitions." data-tags="Premiere Pro,Color Grading,Music Video,Motion Graphics">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(255,210,122,0.08),rgba(36,22,58,0.95));">
+      <div class="gallery-bg-emoji">🎥</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Video Editing</div>
+        <div class="gallery-title">Moonlight Edit — Music Video</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 7 - Tall -->
+  <div class="gallery-item gallery-item-tall" data-category="illustration" data-icon="🧚" data-title="Spirit Forest — Series" data-cat="Concept Art" data-desc="A conceptual art series depicting an ancient spirit forest where nature and magic intertwine. Created for a fantasy tabletop RPG campaign setting, featuring 8 environmental pieces." data-tags="Photoshop,Concept Art,Environment Design,Fantasy">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(100,200,150,0.08),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">🧚</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Concept Art</div>
+        <div class="gallery-title">Spirit Forest — Series</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 8 -->
+  <div class="gallery-item" data-category="animation" data-icon="🦋" data-title="The Butterfly Effect" data-cat="Short Animation" data-desc="A meditative 2D animation exploring the concept of interconnectedness through the journey of a single butterfly. Hand-drawn frame by frame in Procreate, composited in After Effects." data-tags="2D Animation,Hand-Drawn,Procreate,After Effects">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(243,180,216,0.1),rgba(36,22,58,0.95));">
+      <div class="gallery-bg-emoji">🦋</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Short Animation</div>
+        <div class="gallery-title">The Butterfly Effect</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 9 -->
+  <div class="gallery-item gallery-item-wide" data-category="motion" data-icon="🌌" data-title="Cosmos Explainer" data-cat="Motion Graphics" data-desc="Stunning animated explainer video for a space education platform. Features 3D rendered astronomical objects, dynamic data visualization, and a carefully orchestrated educational narrative." data-tags="Cinema 4D,After Effects,3D,Explainer Video">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(100,80,200,0.12),rgba(13,8,24,0.95));">
+      <div class="gallery-bg-emoji">🌌</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Motion Graphics</div>
+        <div class="gallery-title">Cosmos Explainer</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 10 -->
+  <div class="gallery-item" data-category="vfx" data-icon="🔮" data-title="Mystic Spellcast — VFX Pack" data-cat="VFX Assets" data-desc="A collection of 40+ magical spell effect assets including fire, ice, lightning, and arcane energy animations. Designed for indie game developers and animators." data-tags="After Effects,VFX Assets,Magic Effects,Game Ready">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(160,80,255,0.1),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">🔮</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">VFX Assets</div>
+        <div class="gallery-title">Mystic Spellcast Pack</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 11 - Tall -->
+  <div class="gallery-item gallery-item-tall" data-category="animation" data-icon="🏯" data-title="Phantom Castle — Opening" data-cat="Title Animation" data-desc="Cinematic opening title sequence for a fantasy web series. Features a dynamic 3D camera sweep through a spectral castle environment with particle-filled atmosphere and dramatic lighting." data-tags="Blender,After Effects,Title Design,Cinematic">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(30,20,80,0.5),rgba(13,8,24,0.95));">
+      <div class="gallery-bg-emoji">🏯</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Title Animation</div>
+        <div class="gallery-title">Phantom Castle — Opening</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Item 12 -->
+  <div class="gallery-item" data-category="story" data-icon="🗺" data-title="The Wanderer's Map" data-cat="Storyboarding" data-desc="Visual development and storyboard series for an adventure animated feature pitch. 150+ panels with full color keys, camera notations, and director's shot descriptions." data-tags="Storyboarding,Color Keys,Visual Development,Feature Film">
+    <div class="gallery-item-inner" style="background:linear-gradient(135deg,rgba(200,150,80,0.1),rgba(27,16,40,0.95));">
+      <div class="gallery-bg-emoji">🗺</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-content">
+        <div class="gallery-cat">Storyboarding</div>
+        <div class="gallery-title">The Wanderer's Map</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Laksh Raj</div>
+        <div class="footer-tagline">Crafting worlds through motion & imagination.</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Behance">🎨</a>
+        <a href="#" class="social-icon" title="Instagram">📷</a>
+        <a href="#" class="social-icon" title="YouTube">▶</a>
+        <a href="#" class="social-icon" title="ArtStation">🖌</a>
+        <a href="#" class="social-icon" title="LinkedIn">💼</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Laksh Raj. All rights reserved.</span>
+      <span class="footer-heart">Made with <span>✦</span> magic & code</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Portfolio lightbox
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lbClose = document.getElementById('lightbox-close');
+  const lbIcon = document.getElementById('lb-icon');
+  const lbCat = document.getElementById('lb-cat');
+  const lbTitle = document.getElementById('lb-title');
+  const lbDesc = document.getElementById('lb-desc');
+  const lbTags = document.getElementById('lb-tags');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lbIcon.textContent = item.dataset.icon || '🎬';
+      lbCat.textContent = item.dataset.cat || '';
+      lbTitle.textContent = item.dataset.title || '';
+      lbDesc.textContent = item.dataset.desc || '';
+
+      const tags = (item.dataset.tags || '').split(',');
+      lbTags.innerHTML = tags.map(t => `<span class="lightbox-tag">${t.trim()}</span>`).join('');
+
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+});
+</script>
+</body>
+</html>
