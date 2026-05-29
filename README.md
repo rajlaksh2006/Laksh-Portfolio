@@ -1,2 +1,0 @@
-# Laksh-Portfolio
-Portfolio website
